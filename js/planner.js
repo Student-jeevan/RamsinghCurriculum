@@ -36,7 +36,7 @@ let boundListeners = [];               // track listeners for cleanup
 function shiftDate(days) {
   const d = parseDate(currentDate);
   d.setDate(d.getDate() + days);
-  currentDate = formatDate(d);
+  currentDate = formatDate(d, 'iso');
   return currentDate;
 }
 

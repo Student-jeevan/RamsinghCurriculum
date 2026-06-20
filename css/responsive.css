@@ -29,7 +29,7 @@
   /* ── Sidebar collapses off-screen ────────────────────────────────────── */
   .sidebar {
     transform: translateX(-100%);
-    z-index: calc(var(--z-modal) - 50);
+    z-index: calc(var(--z-modal) - 1);
   }
 
   .sidebar.mobile-open {
@@ -60,7 +60,8 @@
 
   /* ── Grid collapses to single column ─────────────────────────────────── */
   .grid-2,
-  .grid-3 {
+  .grid-3,
+  .dashboard-hero {
     grid-template-columns: 1fr;
   }
 
@@ -135,6 +136,19 @@
   /* ── Dashboard hero adjustments ──────────────────────────────────────── */
   .dashboard-hero {
     gap: var(--sp-4);
+  }
+  
+  .dashboard-hero .card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .dashboard-hero .flex-between {
+    flex-direction: column;
+    gap: var(--sp-4);
+    justify-content: center;
   }
 }
 
