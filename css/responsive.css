@@ -29,7 +29,7 @@
   /* ── Sidebar collapses off-screen ────────────────────────────────────── */
   .sidebar {
     transform: translateX(-100%);
-    z-index: var(--z-modal);
+    z-index: calc(var(--z-modal) - 50);
   }
 
   .sidebar.mobile-open {

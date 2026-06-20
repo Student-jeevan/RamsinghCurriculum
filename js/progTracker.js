@@ -1,9 +1,9 @@
 /**
- * progTracker.js — Python Programming Tracker Module
+ * progTracker.js — C Programming Tracker Module
  * 
  * Stats row: Exercises Done, Projects Completed, Bugs Debugged, Code Quality Score
  * 
- * Tab 1: Learning Roadmap — visual timeline of Python modules
+ * Tab 1: Learning Roadmap — visual timeline of C modules
  * Tab 2: Exercises & Projects — add/manage exercises and projects
  * Tab 3: Debug Log — record and review debugging practice
  * Tab 4: Code Quality — checklist of best practices with progress
@@ -467,7 +467,7 @@ export function render() {
   return `
     <div class="page" id="prog-tracker-page">
       <div class="page-header">
-        <h1 class="page-title">🐍 Python Programming Tracker</h1>
+        <h1 class="page-title">💻 C Programming Tracker</h1>
       </div>
 
       ${renderStats()}

@@ -111,73 +111,107 @@ export function getDefaultCurriculum() {
         ]
       },
 
-      // ─── Programming (Python) Track ─────────────────────────────────────
+      // ─── Programming (C) Track ──────────────────────────────────────────
       {
         id: 'programming',
-        name: 'Programming (Python)',
-        icon: '🐍',
+        name: 'Programming (C)',
+        icon: '💻',
         color: 'var(--track-prog)',
         colorRaw: '#00b894',
         modules: [
-          mod('prog-basics', 'Python Basics', [
-            topic('Variables & Data Types', 'int, float, str, bool, type(), dynamic typing'),
-            topic('Operators', 'Arithmetic, comparison, logical, bitwise, assignment operators'),
-            topic('Input/Output', 'print(), input(), formatted strings, f-strings'),
-            topic('Type Conversion', 'Implicit and explicit type casting, int(), float(), str()'),
-            topic('String Basics', 'Indexing, slicing, methods, immutability, concatenation'),
+          mod('c-fundamentals', 'Computer Fundamentals', [
+            topic('How Computers Work', 'Hardware vs Software, CPU, Memory, Storage'),
+            topic('Compilation Process', 'Source code, preprocessor, compiler, assembler, linker'),
+            topic('Setting up IDE', 'Installing GCC, VS Code setup, running first program'),
+            topic('Number Systems Basics', 'Binary, decimal, hexadecimal for programmers'),
           ]),
 
-          mod('prog-control', 'Control Flow', [
-            topic('Conditional Statements', 'if, elif, else, nested conditions, ternary operator'),
-            topic('For Loops', 'range(), iterating over sequences, enumerate(), zip()'),
-            topic('While Loops', 'Condition-based looping, sentinel values, infinite loops'),
-            topic('Break/Continue/Pass', 'Loop control statements and their use cases'),
-            topic('Nested Loops', 'Patterns, matrix traversal, time complexity considerations'),
+          mod('c-basics', 'C Basics', [
+            topic('Program Structure', '#include, main function, comments, basic syntax'),
+            topic('Variables & Data Types', 'int, float, char, double, sizeof operator'),
+            topic('Input & Output', 'printf, scanf, format specifiers (%d, %f, %c, %s)'),
+            topic('Operators', 'Arithmetic, relational, logical, bitwise, assignment, ternary'),
+            topic('Type Casting', 'Implicit conversion, explicit casting (int), (float)'),
           ]),
 
-          mod('prog-functions', 'Functions', [
-            topic('Defining Functions', 'def keyword, naming conventions, docstrings'),
-            topic('Parameters & Arguments', 'Positional, keyword, default, *args, **kwargs'),
-            topic('Return Values', 'Single/multiple returns, None, early return patterns'),
-            topic('Scope & Lifetime', 'Local, global, nonlocal, LEGB rule'),
-            topic('Lambda Functions', 'Anonymous functions, map(), filter(), reduce()'),
-            topic('Recursion', 'Base case, recursive case, stack depth, memoization'),
+          mod('c-control', 'Control Flow', [
+            topic('If-Else Statements', 'if, else if, else, nested conditions'),
+            topic('Switch Case', 'switch, case, break, default, fallthrough'),
+            topic('For Loops', 'Initialization, condition, increment, nested loops'),
+            topic('While & Do-While Loops', 'Condition-controlled loops, infinite loops'),
+            topic('Loop Control', 'break, continue, goto (and why to avoid it)'),
           ]),
 
-          mod('prog-datastructures', 'Data Structures', [
-            topic('Lists', 'Creation, methods, slicing, copying, list as stack'),
-            topic('Tuples', 'Immutability, packing/unpacking, named tuples'),
-            topic('Dictionaries', 'Key-value pairs, methods, dict comprehensions'),
-            topic('Sets', 'Set operations, frozen sets, membership testing'),
-            topic('List Comprehensions', 'Syntax, conditionals, nested comprehensions'),
-            topic('Nested Data Structures', 'Lists of dicts, dicts of lists, JSON-like structures'),
+          mod('c-functions', 'Functions', [
+            topic('Function Basics', 'Declaration, definition, calling, return types'),
+            topic('Arguments & Parameters', 'Pass by value, formal vs actual parameters'),
+            topic('Scope & Lifetime', 'Local, global, static variables'),
+            topic('Recursion', 'Base case, recursive call, stack overflow'),
+            topic('Math Library', 'Using math.h: pow, sqrt, abs, trigonometric functions'),
           ]),
 
-          mod('prog-files', 'File Handling & Modules', [
-            topic('File Read/Write', 'open(), read modes, with statement, encoding'),
-            topic('CSV Handling', 'csv module, reader, writer, DictReader, DictWriter'),
-            topic('JSON Handling', 'json.loads(), json.dumps(), reading/writing JSON files'),
-            topic('Importing Modules', 'import, from...import, as alias, __name__'),
-            topic('Standard Library', 'os, sys, math, random, datetime, collections'),
-            topic('Creating Modules', 'Module structure, __init__.py, packages'),
+          mod('c-arrays-strings', 'Arrays & Strings', [
+            topic('1D Arrays', 'Declaration, initialization, accessing elements, bounds'),
+            topic('Multidimensional Arrays', '2D arrays, matrices, traversal'),
+            topic('Strings Basics', 'Character arrays, null terminator \\0'),
+            topic('String Library', 'Using string.h: strlen, strcpy, strcat, strcmp'),
+            topic('Passing Arrays to Functions', 'Array decay to pointer, passing sizes'),
           ]),
 
-          mod('prog-oop', 'OOP', [
-            topic('Classes & Objects', 'Class definition, instantiation, attributes, methods'),
-            topic('Constructors', '__init__, instance vs class attributes, self'),
-            topic('Inheritance', 'Single, multiple, super(), method resolution order'),
-            topic('Polymorphism', 'Method overriding, duck typing, abstract classes'),
-            topic('Encapsulation', 'Public, protected, private, property decorators'),
-            topic('Magic Methods', '__str__, __repr__, __len__, __eq__, operator overloading'),
+          mod('c-pointers', 'Pointers', [
+            topic('Pointer Basics', 'Address-of operator (&), dereference operator (*)'),
+            topic('Pointer Arithmetic', 'Incrementing pointers, array vs pointer differences'),
+            topic('Pointers & Functions', 'Pass by reference, returning pointers'),
+            topic('Pointers & Arrays', 'Accessing arrays using pointers, array of pointers'),
+            topic('Double Pointers', 'Pointers to pointers (**p)'),
           ]),
 
-          mod('prog-advanced', 'Advanced Python', [
-            topic('Decorators', 'Function decorators, @syntax, functools.wraps, class decorators'),
-            topic('Generators', 'yield, generator expressions, lazy evaluation, send()'),
-            topic('Iterators', 'Iterator protocol, __iter__, __next__, itertools'),
-            topic('Error Handling', 'try/except/else/finally, custom exceptions, best practices'),
-            topic('Regular Expressions', 're module, patterns, groups, findall, sub, compile'),
-            topic('Virtual Environments', 'venv, pip, requirements.txt, dependency management'),
+          mod('c-structs', 'Structures & Unions', [
+            topic('Structures', 'Defining struct, accessing members (.), initialization'),
+            topic('Array of Structures', 'Managing multiple records'),
+            topic('Pointers to Structures', 'The arrow operator (->)'),
+            topic('Typedef', 'Simplifying type names using typedef'),
+            topic('Unions', 'Memory sharing in unions vs structs'),
+          ]),
+
+          mod('c-dynamic-mem', 'Dynamic Memory Allocation', [
+            topic('Memory Segments', 'Heap vs Stack memory'),
+            topic('Malloc & Free', 'Allocating and releasing memory on the heap'),
+            topic('Calloc', 'Allocating zero-initialized memory'),
+            topic('Realloc', 'Resizing dynamically allocated memory'),
+            topic('Memory Leaks', 'Dangling pointers, memory management best practices'),
+          ]),
+
+          mod('c-files', 'File Handling', [
+            topic('File Basics', 'File pointers, fopen, fclose, modes (r, w, a)'),
+            topic('Text File I/O', 'fprintf, fscanf, fgets, fputs'),
+            topic('Binary File I/O', 'fread, fwrite, working with records'),
+            topic('File Positioning', 'fseek, ftell, rewind'),
+          ]),
+
+          mod('c-modular', 'Modular Programming', [
+            topic('Header Files', 'Creating .h files, include guards (#ifndef)'),
+            topic('Multiple Source Files', 'Compiling multiple .c files together'),
+            topic('Storage Classes', 'auto, register, static, extern'),
+            topic('Macros', '#define, conditional compilation (#ifdef)'),
+          ]),
+
+          mod('c-debugging', 'Debugging', [
+            topic('Print Debugging', 'Strategic use of printf for state inspection'),
+            topic('GDB Basics', 'Breakpoints, stepping, inspecting variables in GDB'),
+            topic('Common Errors', 'Segmentation faults, buffer overflows, uninitialized vars'),
+          ]),
+
+          mod('c-problem-solving', 'Problem Solving', [
+            topic('Sorting Algorithms', 'Implementing Bubble Sort, Selection Sort'),
+            topic('Searching Algorithms', 'Implementing Linear Search, Binary Search'),
+            topic('String Manipulations', 'Reversing, palindromes, anagrams'),
+          ]),
+
+          mod('c-projects', 'Mini Projects', [
+            topic('CLI Tools', 'Building practical command-line utilities'),
+            topic('Text-based Games', 'Tic-tac-toe, guessing games with state management'),
+            topic('Data Management', 'CRUD operations using structs and files'),
           ]),
         ]
       },
@@ -388,12 +422,12 @@ export function getDefaultProgExtra() {
     exercises: [], // { id, title, difficulty: 'easy'|'medium'|'hard', status: 'not-started'|'completed', description: '' }
 
     projects: [
-      { id: generateId(), title: 'Calculator App', description: 'Build a CLI calculator with basic and scientific operations', status: 'not-started' },
-      { id: generateId(), title: 'To-Do List', description: 'CLI to-do list with file storage and priority levels', status: 'not-started' },
-      { id: generateId(), title: 'Quiz Game', description: 'Multiple choice quiz that reads questions from a file', status: 'not-started' },
-      { id: generateId(), title: 'Student Grade Manager', description: 'Track and analyze student grades with statistics', status: 'not-started' },
-      { id: generateId(), title: 'Web Scraper', description: 'Simple web scraper with requests and BeautifulSoup', status: 'not-started' },
-      { id: generateId(), title: 'Personal Budget Tracker', description: 'Track income and expenses with monthly reports', status: 'not-started' },
+      { id: generateId(), title: 'CLI Calculator', description: 'Build a calculator with basic operations using switch statements', status: 'not-started' },
+      { id: generateId(), title: 'Number Guessing Game', description: 'Interactive game using loops and random numbers', status: 'not-started' },
+      { id: generateId(), title: 'Student Grade System', description: 'Use structures and arrays to manage and analyze student grades', status: 'not-started' },
+      { id: generateId(), title: 'Contact Book', description: 'Store and retrieve contacts using file handling (binary files)', status: 'not-started' },
+      { id: generateId(), title: 'File Encryption Utility', description: 'Encrypt and decrypt text files using bitwise XOR', status: 'not-started' },
+      { id: generateId(), title: 'Matrix Calculator', description: 'Perform matrix addition, multiplication using 2D arrays and pointers', status: 'not-started' },
     ],
 
     debugLog: [], // { id, date, bugType, description, resolution }

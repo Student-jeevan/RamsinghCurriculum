@@ -180,21 +180,59 @@ function renderResults(results, query) {
   if (results.length === 0) {
     if (!query || query.trim().length === 0) {
       return `
-        <div class="empty-state" style="padding:2rem">
-          <div class="empty-icon">🔍</div>
-          <div class="empty-text">Start typing to search across topics, notes, and plans</div>
+        <div style="padding: 1.5rem;">
+          <!-- Category Quick Filters -->
+          <div style="margin-bottom: 1.25rem;">
+            <div class="text-muted text-small" style="font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.75rem;">Browse by Category</div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem;">
+              <button data-action="quick-search" data-query="math" class="btn btn-ghost" style="justify-content: flex-start; gap: 0.5rem; padding: 0.6rem 0.75rem; font-size: 0.8125rem;">
+                <span style="font-size: 1.1rem;">📐</span> Mathematics
+                <span class="text-muted text-small" style="margin-left: auto;">${getTrackCount('math')}</span>
+              </button>
+              <button data-action="quick-search" data-query="c " class="btn btn-ghost" style="justify-content: flex-start; gap: 0.5rem; padding: 0.6rem 0.75rem; font-size: 0.8125rem;">
+                <span style="font-size: 1.1rem;">💻</span> Programming
+                <span class="text-muted text-small" style="margin-left: auto;">${getTrackCount('programming')}</span>
+              </button>
+              <button data-action="quick-search" data-query="algorithm" class="btn btn-ghost" style="justify-content: flex-start; gap: 0.5rem; padding: 0.6rem 0.75rem; font-size: 0.8125rem;">
+                <span style="font-size: 1.1rem;">⭐</span> Problem Solving
+                <span class="text-muted text-small" style="margin-left: auto;">${getTrackCount('problem-solving')}</span>
+              </button>
+              <button data-action="quick-search" data-query="board" class="btn btn-ghost" style="justify-content: flex-start; gap: 0.5rem; padding: 0.6rem 0.75rem; font-size: 0.8125rem;">
+                <span style="font-size: 1.1rem;">🎓</span> Board Prep
+                <span class="text-muted text-small" style="margin-left: auto;">${getTrackCount('board')}</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Recent Activity -->
+          ${renderRecentTopics()}
+
+          <!-- Search Tips -->
+          <div style="border-top: 1px solid var(--border); padding-top: 1rem; margin-top: 0.5rem;">
+            <div class="text-muted text-small" style="font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.5rem;">Search Tips</div>
+            <div style="display: flex; flex-direction: column; gap: 0.35rem; font-size: 0.75rem; color: var(--text-muted);">
+              <span>💡 Type a topic name like <strong style="color: var(--text-secondary);">"functions"</strong> or <strong style="color: var(--text-secondary);">"sorting"</strong></span>
+              <span>📝 Search your personal notes from the Knowledge Base</span>
+              <span>📅 Find planner entries by keyword</span>
+              <span>🔗 Click any result to jump directly to it</span>
+            </div>
+          </div>
         </div>`;
     }
     return `
-      <div class="empty-state" style="padding:2rem">
+      <div class="empty-state" style="padding: 2.5rem 1.5rem;">
         <div class="empty-icon">😕</div>
-        <div class="empty-text">No results found for "${sanitizeHTML(query)}"</div>
+        <div class="empty-text" style="margin-bottom: 0.75rem;">No results found for "<strong>${sanitizeHTML(query)}</strong>"</div>
+        <div class="text-muted text-small" style="max-width: 300px; margin: 0 auto; line-height: 1.6;">
+          Try a different keyword, or check your spelling. You can search for topic names, note content, or planner entries.
+        </div>
       </div>`;
   }
 
   // Group by type
   const groups = {};
   const groupLabels = { topic: 'Topics', knowledge: 'Knowledge Base', planner: 'Planner' };
+  const groupIcons = { topic: '📚', knowledge: '📝', planner: '📅' };
   const groupOrder = ['topic', 'knowledge', 'planner'];
 
   for (const r of results) {
@@ -202,28 +240,47 @@ function renderResults(results, query) {
     groups[r.type].push(r);
   }
 
-  let html = '';
+  let html = `<div style="padding: 0.5rem 1rem 0.25rem; font-size: 0.7rem; color: var(--text-muted);">${results.length} result${results.length !== 1 ? 's' : ''} found</div>`;
+
   for (const type of groupOrder) {
     if (!groups[type]) continue;
 
-    html += `<div class="text-muted text-small" style="padding:0.5rem 1rem;font-weight:600;text-transform:uppercase;letter-spacing:0.05em">${groupLabels[type]}</div>`;
+    html += `<div class="text-muted text-small" style="padding: 0.5rem 1rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; display: flex; align-items: center; gap: 0.4rem; border-top: 1px solid var(--border); margin-top: 0.25rem;">${groupIcons[type]} ${groupLabels[type]} <span style="font-weight: 400; opacity: 0.7;">(${groups[type].length})</span></div>`;
 
     for (const r of groups[type]) {
-      const categoryBadge = r.category ? `<span class="badge" style="font-size:0.65rem">${sanitizeHTML(r.category)}</span>` : '';
-      const snippetHTML = r.snippet ? `<div class="text-muted text-small" style="margin-top:0.25rem">${highlight(r.snippet, query)}</div>` : '';
+      const categoryBadge = r.category ? `<span class="badge" style="font-size: 0.6rem; padding: 0.1rem 0.4rem;">${sanitizeHTML(r.category)}</span>` : '';
+      
+      // Add status badge for topics
+      let statusBadge = '';
+      if (r.type === 'topic' && r.status) {
+        const statusClass = `badge-${r.status}`;
+        const statusLabel = r.status.replace('-', ' ').replace(/\b\w/g, c => c.toUpperCase());
+        statusBadge = `<span class="badge ${statusClass}" style="font-size: 0.6rem; padding: 0.1rem 0.4rem; margin-left: 0.25rem;">${statusLabel}</span>`;
+      }
+
+      const snippetHTML = r.snippet ? `<div class="text-muted text-small" style="margin-top: 0.3rem; line-height: 1.4; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;">${highlight(r.snippet, query)}</div>` : '';
+
+      // Add confidence stars for topics
+      let confidenceHTML = '';
+      if (r.type === 'topic' && r.confidence > 0) {
+        const stars = '★'.repeat(r.confidence) + '☆'.repeat(5 - r.confidence);
+        confidenceHTML = `<span style="font-size: 0.65rem; color: #f1c40f; margin-left: 0.4rem;" title="Confidence: ${r.confidence}/5">${stars}</span>`;
+      }
 
       html += `
         <div class="list-item" data-action="select-result" data-route="${r.route}"
              data-detail='${JSON.stringify(r.detail).replace(/'/g, '&#39;')}'
-             style="cursor:pointer;padding:0.75rem 1rem">
-          <span style="font-size:1.25rem;margin-right:0.75rem;flex-shrink:0">${r.icon}</span>
-          <div class="list-item-content" style="min-width:0">
-            <div class="flex flex-gap" style="align-items:center;gap:0.5rem">
-              <span class="list-item-title">${highlight(r.title, query)}</span>
+             style="cursor: pointer; padding: 0.65rem 1rem; border-bottom-color: transparent;">
+          <span style="font-size: 1.2rem; margin-right: 0.6rem; flex-shrink: 0;">${r.icon}</span>
+          <div class="list-item-content" style="min-width: 0;">
+            <div style="display: flex; align-items: center; flex-wrap: wrap; gap: 0.35rem;">
+              <span class="list-item-title" style="font-size: 0.8125rem;">${highlight(r.title, query)}</span>
+              ${statusBadge}${confidenceHTML}
               ${categoryBadge}
             </div>
             ${snippetHTML}
           </div>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" stroke-width="2" stroke-linecap="round" style="flex-shrink: 0; opacity: 0.4;"><path d="M9 18l6-6-6-6"/></svg>
         </div>`;
     }
   }
@@ -231,19 +288,82 @@ function renderResults(results, query) {
   return html;
 }
 
+/** Get count of topics in a track */
+function getTrackCount(trackId) {
+  const curriculum = getCurriculum();
+  const track = curriculum.tracks.find(t => t.id === trackId);
+  if (!track) return '';
+  let total = 0;
+  for (const mod of track.modules) total += mod.topics.length;
+  return `${total} topics`;
+}
+
+/** Render recently active topics (up to 5) */
+function renderRecentTopics() {
+  const curriculum = getCurriculum();
+  const recent = [];
+  for (const track of curriculum.tracks) {
+    for (const mod of track.modules) {
+      for (const topic of mod.topics) {
+        if (topic.status !== 'not-started') {
+          recent.push({
+            icon: track.icon,
+            title: topic.title,
+            status: topic.status,
+            trackName: track.name,
+            moduleName: mod.name,
+            topicId: topic.id,
+            trackId: track.id,
+            moduleId: mod.id,
+            dateStarted: topic.dateStarted
+          });
+        }
+      }
+    }
+  }
+
+  // Sort by dateStarted (newest first), take 5
+  recent.sort((a, b) => (b.dateStarted || '').localeCompare(a.dateStarted || ''));
+  const top = recent.slice(0, 5);
+
+  if (top.length === 0) return '';
+
+  let html = `
+    <div style="margin-bottom: 1rem;">
+      <div class="text-muted text-small" style="font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.5rem;">In Progress</div>`;
+
+  for (const t of top) {
+    const statusClass = `badge-${t.status}`;
+    const statusLabel = t.status.replace('-', ' ').replace(/\b\w/g, c => c.toUpperCase());
+    html += `
+      <div class="list-item" data-action="select-result" data-route="curriculum"
+           data-detail='${JSON.stringify({ topicId: t.topicId, trackId: t.trackId, moduleId: t.moduleId }).replace(/'/g, '&#39;')}'
+           style="cursor: pointer; padding: 0.5rem 0.6rem; border-bottom-color: transparent;">
+        <span style="font-size: 1rem; margin-right: 0.5rem;">${t.icon}</span>
+        <div class="list-item-content" style="min-width: 0;">
+          <span class="list-item-title" style="font-size: 0.8rem;">${sanitizeHTML(t.title)}</span>
+          <span class="text-muted" style="font-size: 0.65rem; margin-left: 0.4rem;">${sanitizeHTML(t.trackName)}</span>
+        </div>
+        <span class="badge ${statusClass}" style="font-size: 0.6rem; padding: 0.1rem 0.4rem;">${statusLabel}</span>
+      </div>`;
+  }
+  html += `</div>`;
+  return html;
+}
+
 /** Build the full modal inner HTML */
 function buildModalHTML() {
   return `
-    <div style="padding:1rem 1.25rem;border-bottom:1px solid var(--border)">
-      <div class="flex" style="align-items:center;gap:0.75rem">
-        <span style="font-size:1.25rem;opacity:0.5">🔍</span>
+    <div style="padding: 1rem 1.25rem; border-bottom: 1px solid var(--border);">
+      <div class="flex" style="align-items: center; gap: 0.75rem;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" stroke-width="2" stroke-linecap="round" style="flex-shrink: 0;"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
         <input type="text" class="input" id="global-search-input"
                placeholder="Search topics, notes, plans…"
-               style="border:none;box-shadow:none;font-size:1rem;flex:1;padding:0.5rem 0" />
-        <kbd style="font-size:0.7rem;padding:0.15rem 0.4rem;border:1px solid var(--border);border-radius:4px;color:var(--text-muted)">ESC</kbd>
+               style="border: none; box-shadow: none; background: transparent; font-size: 1rem; flex: 1; padding: 0.5rem 0;" />
+        <kbd style="font-size: 0.65rem; padding: 0.15rem 0.5rem; border: 1px solid var(--border); border-radius: 4px; color: var(--text-muted); background: var(--bg-secondary); white-space: nowrap;">ESC</kbd>
       </div>
     </div>
-    <div id="global-search-results" style="max-height:60vh;overflow-y:auto">
+    <div id="global-search-results" style="max-height: 60vh; overflow-y: auto;">
       ${renderResults([], '')}
     </div>`;
 }
@@ -377,6 +497,15 @@ export function init() {
         setTimeout(() => {
           document.dispatchEvent(new CustomEvent('openTopicDetail', { detail }));
         }, 300);
+      }
+    } else if (action === 'quick-search') {
+      const query = actionEl.dataset.query;
+      const input = document.getElementById('global-search-input');
+      if (input) {
+        input.value = query;
+        // Trigger the input event to run search
+        input.dispatchEvent(new Event('input'));
+        input.focus();
       }
     }
   };
