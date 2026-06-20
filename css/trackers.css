@@ -1,0 +1,180 @@
+/* ==========================================================================
+   Tracker Pages – Styles
+   Math, Programming, Problem Solving, Board Exam trackers
+   ========================================================================== */
+
+/* ==========================================================================
+   SHARED TRACKER LAYOUT
+   ========================================================================== */
+
+.tracker-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: var(--sp-4);
+  margin-bottom: var(--sp-6);
+}
+
+.tracker-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.tracker-card-header {
+  padding: var(--sp-4) var(--sp-5);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tracker-card-body {
+  padding: var(--sp-4) var(--sp-5);
+}
+
+/* ==========================================================================
+   FORMULA GRID (Math Tracker)
+   ========================================================================== */
+
+.formula-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: var(--sp-3);
+}
+
+.formula-item {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  padding: var(--sp-2);
+  border-radius: var(--radius-md);
+  font-size: var(--fs-sm);
+}
+
+/* ==========================================================================
+   ROADMAP TIMELINE (Programming Tracker)
+   ========================================================================== */
+
+.roadmap-timeline {
+  position: relative;
+  padding-left: var(--sp-8);
+}
+
+.roadmap-item {
+  position: relative;
+  padding-bottom: var(--sp-6);
+  padding-left: var(--sp-4);
+}
+
+/* Timeline node dot */
+.roadmap-item::before {
+  content: '';
+  position: absolute;
+  left: -24px;
+  top: 8px;
+  width: 12px;
+  height: 12px;
+  border-radius: var(--radius-full);
+  background: var(--border);
+  border: 2px solid var(--bg-card);
+}
+
+.roadmap-item.completed::before {
+  background: var(--status-mastered);
+}
+
+.roadmap-item.active::before {
+  background: var(--status-learning);
+  box-shadow: 0 0 0 4px var(--accent-primary-light);
+}
+
+/* Connecting line */
+.roadmap-line {
+  position: absolute;
+  left: calc(-24px + 5px);
+  top: 20px;
+  bottom: 0;
+  width: 2px;
+  background: var(--border);
+}
+
+/* ==========================================================================
+   PROBLEM LOG (Problem Solving Tracker)
+   ========================================================================== */
+
+.problem-log-entry {
+  padding: var(--sp-3) var(--sp-4);
+  border-bottom: 1px solid var(--border);
+  display: grid;
+  grid-template-columns: 1fr 100px 80px 100px;
+  gap: var(--sp-3);
+  align-items: center;
+  font-size: var(--fs-sm);
+}
+
+.problem-log-header {
+  font-weight: var(--fw-semibold);
+  color: var(--text-muted);
+  font-size: var(--fs-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* ==========================================================================
+   READINESS METER (Board Tracker)
+   ========================================================================== */
+
+.readiness-meter {
+  width: 200px;
+  height: 200px;
+  position: relative;
+  margin: 0 auto;
+}
+
+/* ==========================================================================
+   DIFFICULTY TAGS
+   ========================================================================== */
+
+.difficulty-tag {
+  padding: 2px var(--sp-2);
+  border-radius: var(--radius-sm);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-medium);
+}
+
+.difficulty-easy {
+  background: rgba(0, 184, 148, 0.15);
+  color: var(--status-mastered);
+}
+
+.difficulty-medium {
+  background: rgba(253, 203, 110, 0.15);
+  color: #f39c12;
+}
+
+.difficulty-hard {
+  background: rgba(231, 76, 60, 0.15);
+  color: #e74c3c;
+}
+
+/* ==========================================================================
+   MOCK TEST ENTRIES (Board Tracker)
+   ========================================================================== */
+
+.mock-test-entry {
+  display: grid;
+  grid-template-columns: 1fr 120px 80px 80px 100px;
+  gap: var(--sp-3);
+  padding: var(--sp-3);
+  border-bottom: 1px solid var(--border);
+  font-size: var(--fs-sm);
+  align-items: center;
+}
+
+.score-badge {
+  padding: var(--sp-1) var(--sp-2);
+  border-radius: var(--radius-sm);
+  font-weight: var(--fw-semibold);
+  text-align: center;
+}

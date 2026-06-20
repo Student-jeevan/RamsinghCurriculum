@@ -1,0 +1,285 @@
+/* ==========================================================================
+   Responsive Breakpoints & Print Styles
+   Mobile-first adjustments for the Learning Dashboard
+   ========================================================================== */
+
+/* ==========================================================================
+   LARGE TABLETS / SMALL DESKTOPS  (≤ 1200px)
+   ========================================================================== */
+
+@media (max-width: 1200px) {
+  .grid-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .analytics-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-hero {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ==========================================================================
+   TABLETS & SMALL SCREENS  (≤ 768px)
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  /* ── Sidebar collapses off-screen ────────────────────────────────────── */
+  .sidebar {
+    transform: translateX(-100%);
+    z-index: var(--z-modal);
+  }
+
+  .sidebar.mobile-open {
+    transform: translateX(0);
+  }
+
+  /* ── Show mobile menu toggle ─────────────────────────────────────────── */
+  .mobile-menu-btn {
+    display: flex;
+  }
+
+  /* ── Mobile navigation overlay ───────────────────────────────────────── */
+  .mobile-nav-overlay.active {
+    display: block;
+  }
+
+  /* ── Main content adjusts to full width ──────────────────────────────── */
+  .main-content {
+    margin-left: 0;
+    padding: var(--sp-4);
+    padding-top: calc(var(--header-height) + var(--sp-4));
+  }
+
+  /* ── Header stretches full width ─────────────────────────────────────── */
+  .header {
+    left: 0;
+  }
+
+  /* ── Grid collapses to single column ─────────────────────────────────── */
+  .grid-2,
+  .grid-3 {
+    grid-template-columns: 1fr;
+  }
+
+  /* ── Slide panel goes full-width ─────────────────────────────────────── */
+  .slide-panel {
+    width: 100%;
+  }
+
+  /* ── Weekly review grid: 2 columns ───────────────────────────────────── */
+  .weekly-review-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  /* ── Log entries stack vertically ────────────────────────────────────── */
+  .problem-log-entry {
+    grid-template-columns: 1fr;
+    gap: var(--sp-1);
+  }
+
+  .mock-test-entry {
+    grid-template-columns: 1fr;
+    gap: var(--sp-1);
+  }
+
+  /* ── Curriculum header stacks ────────────────────────────────────────── */
+  .curriculum-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--sp-3);
+  }
+
+  /* ── Planner date stacks ─────────────────────────────────────────────── */
+  .planner-date {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  /* ── Font size reductions ────────────────────────────────────────────── */
+  h1 {
+    font-size: var(--fs-2xl);
+  }
+
+  h2 {
+    font-size: var(--fs-xl);
+  }
+
+  h3 {
+    font-size: var(--fs-lg);
+  }
+
+  .stat-value {
+    font-size: var(--fs-xl);
+  }
+
+  .progress-ring-container {
+    width: 130px;
+    height: 130px;
+  }
+
+  .progress-ring-value {
+    font-size: var(--fs-xl);
+  }
+
+  .streak-display {
+    font-size: var(--fs-lg);
+  }
+
+  .planner-date-display {
+    font-size: var(--fs-lg);
+  }
+
+  /* ── Dashboard hero adjustments ──────────────────────────────────────── */
+  .dashboard-hero {
+    gap: var(--sp-4);
+  }
+}
+
+/* ==========================================================================
+   SMALL PHONES  (≤ 480px)
+   ========================================================================== */
+
+@media (max-width: 480px) {
+  /* ── Weekly review collapses to 1 column ─────────────────────────────── */
+  .weekly-review-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* ── Tracker stats: 2 columns for small phones ──────────────────────── */
+  .tracker-stats {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  /* ── Stat cards get tighter padding ──────────────────────────────────── */
+  .stat-card {
+    padding: var(--sp-3);
+  }
+
+  /* ── Reduce global spacing ───────────────────────────────────────────── */
+  .main-content {
+    padding: var(--sp-3);
+    padding-top: calc(var(--header-height) + var(--sp-3));
+  }
+
+  .card {
+    padding: var(--sp-4);
+  }
+
+  .modal {
+    width: 95%;
+    max-height: 90vh;
+  }
+
+  .modal-header,
+  .modal-body {
+    padding: var(--sp-4);
+  }
+
+  .modal-footer {
+    padding: var(--sp-3) var(--sp-4);
+  }
+
+  /* ── Tabs scroll horizontally ────────────────────────────────────────── */
+  .tabs {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .tabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* ── Toast positioning ───────────────────────────────────────────────── */
+  .toast-container {
+    left: var(--sp-3);
+    right: var(--sp-3);
+    bottom: var(--sp-3);
+  }
+
+  .toast {
+    width: 100%;
+  }
+
+  /* ── Header compact ──────────────────────────────────────────────────── */
+  .header {
+    padding: 0 var(--sp-4);
+    gap: var(--sp-2);
+  }
+
+  .header-title {
+    font-size: var(--fs-md);
+  }
+
+  /* ── Curriculum filters wrap ─────────────────────────────────────────── */
+  .curriculum-filters {
+    flex-wrap: wrap;
+  }
+
+  /* ── Analytics chart height ──────────────────────────────────────────── */
+  .chart-container {
+    height: 200px;
+  }
+
+  .bar-chart {
+    height: 150px;
+  }
+
+  /* ── Progress ring smaller ───────────────────────────────────────────── */
+  .progress-ring-container {
+    width: 110px;
+    height: 110px;
+  }
+
+  .progress-ring-value {
+    font-size: var(--fs-lg);
+  }
+}
+
+/* ==========================================================================
+   PRINT STYLES
+   ========================================================================== */
+
+@media print {
+  /* Hide interactive chrome */
+  .sidebar,
+  .header,
+  .toast-container,
+  .mobile-menu-btn,
+  .mobile-nav-overlay,
+  .btn,
+  .modal-overlay,
+  .slide-panel,
+  .panel-overlay {
+    display: none !important;
+  }
+
+  /* Full-width content */
+  .main-content {
+    margin: 0;
+    padding: var(--sp-4);
+    max-width: 100%;
+  }
+
+  /* Remove backgrounds & shadows for clean print */
+  body {
+    background: #fff;
+    color: #000;
+  }
+
+  .card {
+    box-shadow: none;
+    border: 1px solid #ddd;
+    break-inside: avoid;
+  }
+
+  /* Ensure links show URLs */
+  a[href]::after {
+    content: ' (' attr(href) ')';
+    font-size: var(--fs-xs);
+    color: #666;
+  }
+}

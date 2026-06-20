@@ -1,0 +1,104 @@
+/* ==========================================================================
+   Planner Page – Styles
+   Daily planner, weekly review, reflections
+   ========================================================================== */
+
+/* ==========================================================================
+   DATE NAVIGATION
+   ========================================================================== */
+
+.planner-date {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-4);
+  margin-bottom: var(--sp-6);
+}
+
+.planner-date-display {
+  font-size: var(--fs-xl);
+  font-weight: var(--fw-bold);
+}
+
+.planner-date-nav {
+  display: flex;
+  gap: var(--sp-2);
+}
+
+/* ==========================================================================
+   PLANNER SECTIONS
+   ========================================================================== */
+
+.planner-section {
+  margin-bottom: var(--sp-6);
+}
+
+.planner-section-title {
+  font-size: var(--fs-md);
+  font-weight: var(--fw-semibold);
+  margin-bottom: var(--sp-3);
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+}
+
+/* ==========================================================================
+   PLANNER ITEMS
+   ========================================================================== */
+
+.planner-add-item {
+  display: flex;
+  gap: var(--sp-2);
+  margin-top: var(--sp-3);
+}
+
+.planner-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--sp-3);
+  padding: var(--sp-2) 0;
+}
+
+.planner-item-text {
+  flex: 1;
+  font-size: var(--fs-sm);
+}
+
+.planner-item-actions {
+  display: flex;
+  gap: var(--sp-1);
+}
+
+/* ==========================================================================
+   WEEKLY REVIEW
+   ========================================================================== */
+
+.weekly-review-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--sp-4);
+}
+
+.review-metric {
+  text-align: center;
+  padding: var(--sp-4);
+}
+
+.review-metric-value {
+  font-size: var(--fs-2xl);
+  font-weight: var(--fw-bold);
+  color: var(--accent-primary);
+}
+
+.review-metric-label {
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+  margin-top: var(--sp-1);
+}
+
+/* ==========================================================================
+   REFLECTION AREA
+   ========================================================================== */
+
+.reflection-area {
+  min-height: 150px;
+}

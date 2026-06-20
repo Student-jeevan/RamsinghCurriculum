@@ -1,0 +1,127 @@
+/* ==========================================================================
+   Curriculum Page – Styles
+   Track sections, modules, topics, filters, tree hierarchy
+   ========================================================================== */
+
+/* ── Page Header ─────────────────────────────────────────────────────────── */
+.curriculum-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--sp-6);
+}
+
+/* ── Filters ─────────────────────────────────────────────────────────────── */
+.curriculum-filters {
+  display: flex;
+  gap: var(--sp-3);
+  align-items: center;
+}
+
+.curriculum-filter-select {
+  padding: var(--sp-2) var(--sp-3);
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  color: var(--text-primary);
+  font-size: var(--fs-sm);
+  font-family: var(--font-family);
+  outline: none;
+  cursor: pointer;
+  transition: border-color var(--transition-fast);
+}
+
+.curriculum-filter-select:focus {
+  border-color: var(--accent-primary);
+}
+
+/* ==========================================================================
+   TRACK SECTIONS
+   ========================================================================== */
+
+.track-section {
+  margin-bottom: var(--sp-6);
+}
+
+/* Track Header (collapsible) */
+.track-section-header {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  padding: var(--sp-4);
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  margin-bottom: var(--sp-3);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.track-section-header:hover {
+  border-color: var(--border-hover);
+  box-shadow: var(--shadow-sm);
+}
+
+.track-section-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+}
+
+.track-section-info {
+  flex: 1;
+}
+
+.track-section-name {
+  font-weight: var(--fw-semibold);
+  font-size: var(--fs-md);
+}
+
+.track-section-stats {
+  font-size: var(--fs-xs);
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+/* ==========================================================================
+   MODULE ITEMS
+   ========================================================================== */
+
+.module-item {
+  margin-left: var(--sp-4);
+  padding: var(--sp-3) var(--sp-4);
+  border-left: 2px solid var(--border);
+  margin-bottom: var(--sp-1);
+}
+
+/* ==========================================================================
+   TOPIC ITEMS
+   ========================================================================== */
+
+.topic-item {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  padding: var(--sp-2) var(--sp-3);
+  margin-left: var(--sp-8);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: background var(--transition-fast);
+  font-size: var(--fs-sm);
+}
+
+.topic-item:hover {
+  background: var(--bg-secondary);
+}
+
+.topic-name {
+  flex: 1;
+}
+
+.topic-status {
+  margin-left: auto;
+}

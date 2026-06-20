@@ -1,0 +1,188 @@
+/* ==========================================================================
+   Dashboard Page – Styles
+   Overview, stats, progress rings, streaks, weekly hours, goals
+   ========================================================================== */
+
+/* ── Hero Section (two-column overview) ──────────────────────────────────── */
+.dashboard-hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-6);
+  margin-bottom: var(--sp-6);
+}
+
+/* ==========================================================================
+   PROGRESS RING (SVG-based)
+   ========================================================================== */
+
+.progress-ring-container {
+  position: relative;
+  width: 160px;
+  height: 160px;
+  margin: 0 auto;
+}
+
+.progress-ring {
+  transform: rotate(-90deg);
+}
+
+.progress-ring-circle {
+  transition: stroke-dashoffset 1s ease-in-out;
+}
+
+.progress-ring-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.progress-ring-value {
+  font-size: var(--fs-2xl);
+  font-weight: var(--fw-bold);
+}
+
+.progress-ring-label {
+  font-size: var(--fs-xs);
+  color: var(--text-muted);
+}
+
+/* ==========================================================================
+   STREAK DISPLAY
+   ========================================================================== */
+
+.streak-display {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  font-size: var(--fs-xl);
+  font-weight: var(--fw-bold);
+}
+
+.streak-flame {
+  color: #e17055;
+  font-size: 28px;
+  animation: flicker 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes flicker {
+  0%   { transform: scale(1); }
+  100% { transform: scale(1.1) rotate(5deg); }
+}
+
+/* ==========================================================================
+   FOCUS DISPLAY
+   ========================================================================== */
+
+.focus-display {
+  padding: var(--sp-4);
+  background: var(--accent-primary-light);
+  border-radius: var(--radius-md);
+  border-left: 3px solid var(--accent-primary);
+}
+
+/* ==========================================================================
+   MINI TASK LIST (Dashboard widget)
+   ========================================================================== */
+
+.task-mini-list .task-item {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  padding: var(--sp-2) 0;
+  font-size: var(--fs-sm);
+}
+
+/* ==========================================================================
+   TRACK PROGRESS LIST
+   ========================================================================== */
+
+.track-progress-item {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-4);
+  padding: var(--sp-3) 0;
+}
+
+.track-progress-label {
+  width: 140px;
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+}
+
+.track-color-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: var(--radius-full);
+  flex-shrink: 0;
+}
+
+.track-progress-bar {
+  flex: 1;
+}
+
+.track-progress-pct {
+  width: 45px;
+  text-align: right;
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
+  color: var(--text-muted);
+}
+
+/* ==========================================================================
+   WEEKLY HOURS BAR CHART
+   ========================================================================== */
+
+.weekly-hours {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--sp-2);
+  height: 120px;
+  padding: var(--sp-4) 0;
+}
+
+.hour-bar {
+  flex: 1;
+  background: var(--accent-primary-light);
+  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+  transition: height var(--transition-slow);
+  position: relative;
+  min-height: 4px;
+}
+
+.hour-bar:hover {
+  background: var(--accent-primary);
+}
+
+.hour-bar-label {
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: var(--fs-xs);
+  color: var(--text-muted);
+}
+
+.hour-bar-value {
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-semibold);
+}
+
+/* ==========================================================================
+   GOALS
+   ========================================================================== */
+
+.goal-item {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  padding: var(--sp-2) 0;
+}
